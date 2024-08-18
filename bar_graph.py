@@ -88,10 +88,10 @@ for df in top_names.values():
 
 # Create a DataFrame to hold occurrences or percentages for each name across years
 if data_type == 'percentage':
-    name_trends = pd.DataFrame(index=sorted(top_names.keys()), columns=sorted(all_names)).fillna(0)
+    name_trends = pd.DataFrame(index=sorted(top_names.keys()), columns=sorted(all_names), dtype=float).fillna(0)
     value_column = 'Percentage'
 else:
-    name_trends = pd.DataFrame(index=sorted(top_names.keys()), columns=sorted(all_names)).fillna(0)
+    name_trends = pd.DataFrame(index=sorted(top_names.keys()), columns=sorted(all_names), dtype=int).fillna(0)
     value_column = 'Occurrences'
 
 # Populate the DataFrame with occurrences or percentages
