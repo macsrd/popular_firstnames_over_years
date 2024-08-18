@@ -40,7 +40,7 @@ elif gender == 'F':
     urls = female_urls
     gender_label = 'K'
 else:
-    raise ValueError("Invalid input! Please enter 'M' for male or 'K' for female.")
+    raise ValueError("Invalid input! Please enter 'M' for male or 'F' for female.")
 
 # Function to load data from a URL and return a DataFrame with the top 10 names
 def load_top_10_names(url, sep=',', usecols=[0, 2], skiprows=1, col_names=["Name", "Occurrences"]):
@@ -111,7 +111,7 @@ def update(year):
     plt.barh(data.index, data.values, color=colors)
     plt.xlabel('Percentage (%)' if data_type == 'percentage' else 'Occurrences')
     plt.ylabel('Names')
-    plt.title(f'Top 10 Most Popular {("Male" if gender == "M" else "Female")} Names in Poland - {year} ({data_type.capitalize()})')
+    plt.title(f'Top 10 Most Popular {("Male" if gender == "M" else "Female")} Names Given for Newborn Children in Poland - {year} ({data_type.capitalize()})')
     plt.xlim(0, name_trends.max().max() * 1.1)
     plt.gca().invert_yaxis()  # To display the highest value at the top
 
