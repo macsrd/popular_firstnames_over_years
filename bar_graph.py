@@ -27,7 +27,7 @@ female_urls = {
 url_2000_2018 = "https://api.dane.gov.pl/resources/21458,imiona-nadane-dzieciom-w-polsce-w-latach-2000-2019-imie-pierwsze/csv"
 
 # Prompt the user to choose gender
-gender = input("Please choose the gender for the chart ('M' for male, 'K' for female): ").strip().upper()
+gender = input("Please choose the gender for the chart ('M' for male, 'F' for female): ").strip().upper()
 
 # Prompt the user to choose data type (percentage share or absolute values)
 data_type = input("Please choose the data type ('percentage' for percentage share, 'absolute' for absolute values): ").strip().lower()
@@ -36,7 +36,7 @@ data_type = input("Please choose the data type ('percentage' for percentage shar
 if gender == 'M':
     urls = male_urls
     gender_label = 'M'
-elif gender == 'K':
+elif gender == 'F':
     urls = female_urls
     gender_label = 'K'
 else:
