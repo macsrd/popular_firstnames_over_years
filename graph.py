@@ -18,7 +18,6 @@ def load_top_10_names(url):
     if response.status_code == 200:
         csv_data = StringIO(response.text)
         df = pd.read_csv(csv_data, sep=',', usecols=[0, 2], names=["Name", "Occurrences"], skiprows=1)
-        #df['Occurrences'] = df['Occurrences'].str.replace(' ', '').astype(int)  # Clean and convert the occurrences to int
         top_10_df = df.nlargest(10, 'Occurrences')
         return top_10_df
     else:
