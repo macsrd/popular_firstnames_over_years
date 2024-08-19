@@ -5,7 +5,7 @@ from io import StringIO
 from matplotlib.animation import FuncAnimation
 import seaborn as sns
 
-# URLs for male names (2019-2023)
+# Datasources for male firstnames (2019-2023)
 male_urls = {
     2023: "https://api.dane.gov.pl/resources/54099,imiona-meskie-nadane-dzieciom-w-polsce-w-2023-r-imie-pierwsze/csv",
     2022: "https://api.dane.gov.pl/resources/44825,imiona-meskie-nadane-dzieciom-w-polsce-w-2022-r-imie-pierwsze/csv",
@@ -14,7 +14,7 @@ male_urls = {
     2019: "https://api.dane.gov.pl/resources/21454,imiona-meskie-nadane-dzieciom-w-polsce-w-2019-r-imie-pierwsze/csv"
 }
 
-# URLs for female names (2019-2023)
+# Datasources for female firstnames (2019-2023)
 female_urls = {
     2023: "https://api.dane.gov.pl/resources/54100,imiona-zenskie-nadane-dzieciom-w-polsce-w-2023-r-imie-pierwsze/csv",
     2022: "https://api.dane.gov.pl/resources/44824,imiona-zenskie-nadane-dzieciom-w-polsce-w-2022-r-imie-pierwsze/csv",
@@ -23,7 +23,7 @@ female_urls = {
     2019: "https://api.dane.gov.pl/media/resources/20200129/imiona_%C5%BCe%C5%84skie_2019_imi%C4%99__pierwsze.csv"
 }
 
-# URL for data from 2000-2018 (same for both male and female)
+# Datasource for years 2000-2019 (male and female)
 url_2000_2018 = "https://api.dane.gov.pl/resources/21458,imiona-nadane-dzieciom-w-polsce-w-latach-2000-2019-imie-pierwsze/csv"
 
 # Prompt the user to choose gender
@@ -32,7 +32,7 @@ gender = input("Please choose the gender for the chart ('M' for male, 'F' for fe
 # Prompt the user to choose data type (percentage share or absolute values)
 data_type = input("Please choose the data type ('percentage' for percentage share, 'absolute' for absolute values): ").strip().lower()
 
-# Choose the correct URLs based on the user's input
+# Choose the correct datasources based on the user's input
 if gender == 'M':
     urls = male_urls
     gender_label = 'M'
@@ -42,7 +42,7 @@ elif gender == 'F':
 else:
     raise ValueError("Invalid input! Please enter 'M' for male or 'F' for female.")
 
-# Function to load data from a URL and return a DataFrame with the top 10 names
+# Function to load data from a datasource and return a DataFrame with the top 10 names
 def load_top_10_names(url, sep=',', usecols=[0, 2], skiprows=1, col_names=["Name", "Occurrences"]):
     response = requests.get(url)
     if response.status_code == 200:
@@ -99,7 +99,7 @@ for year, df in top_names.items():
     for _, row in df.iterrows():
         name_trends.at[year, row['Name']] = row[value_column]
 
-# Assign unique colors to each name
+# Assigning unique colors to bars using seaborn
 palette = sns.color_palette("hsv", len(all_names))
 color_map = dict(zip(sorted(all_names), palette))
 
